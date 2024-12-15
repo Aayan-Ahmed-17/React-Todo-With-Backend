@@ -29,6 +29,10 @@ const App = () => {
 
   }
 
+  const delTodo = async (id)=>{
+    const response = await axios.delete(`http://localhost:3000/todo/${id}`)
+    console.log(response)
+  }
 
   const editTodo = async (id)=>{
     const updated = prompt('enter updated val')
@@ -49,8 +53,8 @@ const App = () => {
     <ul>
       {todo ? todo.map(item => {
         return <li key={item.id}>{item.title}
-        <button onClick={()=> editTodo(item.id)}>delete</button>
-        <button>edit</button>
+        <button onClick={()=> delTodo(item.id)}>delete</button>
+        <button onClick={()=> editTodo(item.id)}>edit</button>
         </li>
       }): <h1>Loading...</h1>}
     </ul>
